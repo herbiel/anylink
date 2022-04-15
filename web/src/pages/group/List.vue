@@ -169,6 +169,10 @@
           <el-input v-model="ruleForm.note"></el-input>
         </el-form-item>
 
+        <el-form-item label="子网" prop="note">
+          <el-input v-model="ruleForm.ipv4_cidr"></el-input>
+        </el-form-item>
+
         <el-form-item label="带宽限制" prop="bandwidth">
           <el-input v-model.number="ruleForm.bandwidth">
             <template slot="append">BYTE/S</template>
