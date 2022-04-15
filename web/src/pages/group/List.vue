@@ -41,6 +41,21 @@
         </el-table-column>
 
         <el-table-column
+            prop="Ipv4Gateway"
+            label="子网网关">
+        </el-table-column>
+
+        <el-table-column
+            prop="Ipv4CIDR"
+            label="子网开始地址">
+        </el-table-column>
+      
+        <el-table-column
+            prop="Ipv4End"
+            label="子网结束地址">
+        </el-table-column>
+
+        <el-table-column
             prop="allow_lan"
             label="本地网络">
           <template slot-scope="scope">
@@ -171,6 +186,15 @@
 
         <el-form-item label="子网" prop="note">
           <el-input v-model="ruleForm.ipv4_cidr"></el-input>
+        </el-form-item>
+        <el-form-item label="子网网关" prop="note">
+          <el-input v-model="ruleForm.ipv4_gateway"></el-input>
+        </el-form-item>
+        <el-form-item label="子网开始地址" prop="note">
+          <el-input v-model="ruleForm.ipv4_start"></el-input>
+        </el-form-item>
+        <el-form-item label="子网结束地址" prop="note">
+          <el-input v-model="ruleForm.ipv4_end"></el-input>
         </el-form-item>
 
         <el-form-item label="带宽限制" prop="bandwidth">

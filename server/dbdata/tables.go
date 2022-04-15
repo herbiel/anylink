@@ -9,7 +9,10 @@ type Group struct {
 	Id           int            `json:"id" xorm:"pk autoincr not null"`
 	Name         string         `json:"name" xorm:"varchar(60) not null unique"`
 	Note         string         `json:"note" xorm:"varchar(255)"`
-	Ipv4CIDR     string         `json:"ipv4_cidr"` // 192.168.10.0/24
+	Ipv4CIDR     string         `json:"ipv4_cidr"`    // 192.168.10.0/24
+	Ipv4Gateway  string         `json:"ipv4_gateway"` // 192.168.10.1
+	Ipv4Start    string         `json:"ipv4_start"`   // 192.168.10.100
+	Ipv4End      string         `json:"ipv4_end"`     // 192.168.10.200
 	AllowLan     bool           `json:"allow_lan" xorm:"Bool"`
 	ClientDns    []ValData      `json:"client_dns" xorm:"Text"`
 	RouteInclude []ValData      `json:"route_include" xorm:"Text"`
