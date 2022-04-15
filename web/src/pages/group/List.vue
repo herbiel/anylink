@@ -36,6 +36,11 @@
         </el-table-column>
 
         <el-table-column
+            prop="Ipv4CIDR"
+            label="子网">
+        </el-table-column>
+
+        <el-table-column
             prop="allow_lan"
             label="本地网络">
           <template slot-scope="scope">
