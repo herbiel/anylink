@@ -74,7 +74,7 @@ func initGroupIpPool() {
 func AcquireIp(username, macAddr string) net.IP {
 //获取group指定子网
 	user_info := &dbdata.User{Username: username}
-	group_info := &dbdata.Group{Name: user_info.Groups}
+	group_info := &dbdata.Group{Name: user_info.name}
 
 	fmt.Printf("group net info is %s",group_info.ipv4_cidr)
 	IpPool.mux.Lock()
