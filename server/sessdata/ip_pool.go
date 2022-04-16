@@ -8,6 +8,7 @@ import (
 	"github.com/bjdgyc/anylink/base"
 	"github.com/bjdgyc/anylink/dbdata"
 	"github.com/bjdgyc/anylink/pkg/utils"
+	"fmt"
 )
 
 var (
@@ -47,8 +48,35 @@ func initIpPool() {
 	IpPool.IpLongMax = utils.Ip2long(net.ParseIP(base.Cfg.Ipv4End))
 }
 
+func initGroupIpPool() {
+
+	// 地址处理
+	_, ipNet, err := net.ParseCIDR(base.Cfg.Ipv4CIDR)
+	if err != nil {
+		panic(err)
+	}
+	IpPool.Ipv4IPNet = ipNet
+	IpPool.Ipv4Mask = net.IP(ipNet.Mask)
+	IpPool.Ipv4Gateway = net.ParseIP(base.Cfg.Ipv4Gateway)
+
+	// 网络地址零值
+	// zero := binary.BigEndian.Uint32(ip.Mask(mask))
+	// 广播地址
+	// one, _ := ipNet.Mask.Size()
+	// max := min | uint32(math.Pow(2, float64(32-one))-1)
+
+	// ip地址池
+	IpPool.IpLongMin = utils.Ip2long(net.ParseIP(base.Cfg.Ipv4Start))
+	IpPool.IpLongMax = utils.Ip2long(net.ParseIP(base.Cfg.Ipv4End))
+}
+
 // AcquireIp 获取动态ip
 func AcquireIp(username, macAddr string) net.IP {
+//获取group指定子网
+	user_info := &dbdata.User{Name: username}
+	group_info := &dbdata.Group{Name: user_info.username}
+
+	fmt.Printf("group net info is %s",group_info.ipv4_cidr)
 	IpPool.mux.Lock()
 	defer IpPool.mux.Unlock()
 
